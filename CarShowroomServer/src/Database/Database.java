@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Database implements Constants{
     Connection connection;
+    private static Database database;
     private Database(){}
     public boolean open(){
         try{
@@ -75,14 +76,87 @@ public class Database implements Constants{
             return false;
         }
     }
-
+    public boolean updateCar(Car c){
+        try{
+            PreparedStatement statement = connection.prepareStatement(UPDATE_CAR_FOR_REG);
+            statement.setString(1, c.getMake());
+            statement.setString(2, c.getModel());
+            statement.setString(3, c.getColorString());
+            statement.setInt(4, c.getYear());
+            statement.setInt(5, c.getPrice());
+            statement.setInt(6, c.getQuantity());
+            statement.setString(7, c.getLocation());
+            statement.setString(8, c.getRegistrationNumber());
+            return statement.execute();
+        } catch (SQLException throwables) {
+            Log.print(throwables);
+            return false;
+        }
+    }
+    public int getIdForName(String name){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_ID_FOR_NAME);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int count = resultSet.getInt(1);
+            int id = resultSet.getInt(2);
+            return count == 0 ? -1:id;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return -1;
+        }
+    }
+    public boolean checkUserIdAndPass(int id, String password){
+        if(id == -1) return false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(CHECK_PASSWORD_FOR_ID);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int result = resultSet.getInt(1);
+            return (result == 1) ? true : false;
+        } catch (SQLException throwables) {
+            //throwables.printStackTrace();
+            System.out.println("Check Pass Failed...\n"+throwables.getMessage());
+            return false;
+        }
+    }
+    public static Database getInstance(){
+        if(database == null) database = new Database();
+        return database;
+    }
     public static void main(String[] args) {
         Database database = new Database();
         database.open();
 //        Car car = new Car("ABC123", "Toyota", "Corolla", new String[]{"WHITE", "BLACK", "RED"}, 2020, 2200000, 2, "null");
 //        database.insertNewCar(car);
-        List<Car> cars = database.getAllCars();
-        for(Car c: cars) System.out.println(c);
+//        List<Car> cars = database.getAllCars();
+//        for(int i=0; i<cars.size(); i++){
+//            System.out.println(cars.get(i).getString());
+//        }
+//        Car car = cars.get(0);
+////        database.insertNewCar(car);
+//        car.setPrice(2000000);
+//        System.out.println(car.getColorString());
+//        database.updateCar(car);
+//        List<Car> cars2 = database.getAllCars();
+//        for(int i=0; i<cars.size(); i++){
+//            System.out.println(cars.get(i).getString());
+//            System.out.println(cars2.get(i).getString()+"\n");
+//        }
+
+        System.out.println(database.checkUserIdAndPass(database.getIdForName("Akash"), "akash"));
+
+    }
+
+    public void deleteCarForRegNum(String reg) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(DELETE_CAR_FOR_REG);
+            statement.setString(1, reg);
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 

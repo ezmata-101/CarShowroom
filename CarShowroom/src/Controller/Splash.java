@@ -23,7 +23,7 @@ public class Splash extends Controller implements Initializable {
     private void addRotation(ImageView image, int i){
         RotateTransition rotateTransition = new RotateTransition();
         rotateTransition.setNode(image);
-        rotateTransition.setDuration(Duration.seconds((i==1?5:3)));
+        rotateTransition.setDuration(Duration.seconds((i==1?7:3)));
         rotateTransition.setCycleCount(Animation.INDEFINITE);
         rotateTransition.setFromAngle(0);
         rotateTransition.setToAngle((i==1?10*360: -360));

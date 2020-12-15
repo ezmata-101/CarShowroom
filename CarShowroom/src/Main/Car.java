@@ -1,5 +1,12 @@
-package Classes;
+package Main;
 
+import Controller.CarCard;
+import Controller.MainController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Car {
@@ -92,7 +99,7 @@ public class Car {
 
     public String getColorString() {
         String c = "";
-        for(int i=0; i<Math.min(3, colors.length); i++){
+        for(int i = 0; i< Math.min(3, colors.length); i++){
             if(colors[i] != null) c = c+ colors[i]+",";
         }
         return c;
@@ -101,15 +108,13 @@ public class Car {
         this.colors = new String[3];
         try{
             String ss[] = colors.split(",");
-            for(int i=0; i<Math.min(ss.length, 3); i++) this.colors[i] = ss[i];
+            for(int i = 0; i< Math.min(ss.length, 3); i++) this.colors[i] = ss[i];
         }catch (NullPointerException e){
             e.printStackTrace();
         }
     }
-
-    public String getString(){
-        String s = "CAR_OBJECT"+"/"+
-                registrationNumber + "/" +
+    private String string(){
+        return registrationNumber + "/" +
                 make + "/" +
                 model + "/" +
                 getColorString() + "/" +
@@ -117,6 +122,10 @@ public class Car {
                 price + "/" +
                 quantity + "/" +
                 location;
+    }
+    public String getString(){
+        String s = "CAR_OBJECT"+"/"+
+                string();
         return s;
     }
     public void setFromString(String s){
@@ -168,5 +177,32 @@ public class Car {
         e.setFromString(d.getString());
         System.out.println(e.getString());
         System.out.println(e);
+    }
+    private CarCard carCard;
+    private AnchorPane carCardPane;
+    public AnchorPane getCard(MainController m) {
+        if(carCardPane == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXMLS/car_card.fxml"));
+            try {
+                carCardPane = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.carCard = loader.getController();
+        }
+        this.carCard.setCar(this, m);
+        return carCardPane;
+    }
+
+    public Image getImage() {
+        if(!location.equalsIgnoreCase("null")){
+            Image image = new Image("../Cache/"+location);
+            return image;
+        }
+        return new Image("../Cache/default_car.png");
+    }
+
+    public String delete() {
+        return "DELETE_CAR/"+string();
     }
 }

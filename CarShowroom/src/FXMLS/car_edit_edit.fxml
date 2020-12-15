@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="carEditEdit" prefHeight="440.0" prefWidth="315.0" style="-fx-background-color: dddddd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CarEditEdit">
+   <children>
+      <VBox layoutX="108.0" layoutY="220.0" prefHeight="258.0" prefWidth="315.0" style="-fx-background-color: dddddd;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox prefHeight="42.0" prefWidth="315.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="88.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reg No.">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="218.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Text fx:id="reg_num" strokeType="OUTSIDE" strokeWidth="0.0" text="ABC124sb">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="315.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="93.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Make :">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="218.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <JFXTextField fx:id="make" prefHeight="26.0" prefWidth="201.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox layoutX="15.0" layoutY="51.0" prefHeight="42.0" prefWidth="315.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="93.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Model:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="218.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <JFXTextField fx:id="model" prefHeight="26.0" prefWidth="201.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="95.0" prefHeight="42.0" prefWidth="214.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="53.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year :" wrappingWidth="62.81127166748047">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="114.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <JFXTextField fx:id="year" prefHeight="26.0" prefWidth="78.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="47.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Left:" wrappingWidth="47.1214599609375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="64.0" layoutY="10.0" prefHeight="42.0" prefWidth="114.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <JFXTextField fx:id="left" prefHeight="26.0" prefWidth="86.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="137.0" prefHeight="42.0" prefWidth="214.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="49.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="55.9281005859375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="90.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <JFXTextField fx:id="price" prefHeight="26.0" prefWidth="74.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="161.0" spacing="10.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                     <children>
+                        <JFXColorPicker fx:id="color1" onAction="#onColor1" prefHeight="26.0" prefWidth="38.0" />
+                        <JFXColorPicker fx:id="color2" layoutX="15.0" layoutY="16.0" onAction="#onColor2" prefHeight="26.0" prefWidth="38.0" />
+                        <JFXColorPicker fx:id="color3" layoutX="64.0" layoutY="16.0" onAction="#onColor3" prefHeight="26.0" prefWidth="38.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="68.0" prefWidth="306.0">
+               <children>
+                  <HBox prefHeight="80.0" prefWidth="202.0">
+                     <children>
+                        <StackPane onMouseClicked="#onCancel" prefHeight="46.0" prefWidth="253.0">
+                           <children>
+                              <Rectangle fx:id="cancelRec" arcHeight="20.0" arcWidth="20.0" fill="#92a442" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: ff6600;" width="152.0" />
+                              <ImageView fitHeight="39.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Cache/cancel.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <StackPane onMouseClicked="#onSaveButton" prefHeight="46.0" prefWidth="253.0">
+                           <children>
+                              <Rectangle fx:id="saveRec" arcHeight="20.0" arcWidth="20.0" fill="#92a442" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="152.0" />
+                              <ImageView fitHeight="39.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Cache/save.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </VBox>
+      <StackPane onMouseClicked="#onImageClick" prefHeight="180.0" prefWidth="315.0" style="-fx-background-color: dddddd;" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="car_image" fitHeight="174.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Cache/default_car.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

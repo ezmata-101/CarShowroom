@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="474.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+   <children>
+      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="582.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onSignOut" text="Sign Out" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClose" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Find Car">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onSearchByReg" text="By Registration" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSearchByName" text="By Make and Model" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <JFXListView fx:id="listView" layoutY="27.0" onMouseClicked="#onCarSelection" prefHeight="448.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
+      <Pane fx:id="detailPane" layoutX="370.0" layoutY="26.0" prefHeight="448.0" prefWidth="315.0" />
+   </children>
+</AnchorPane>

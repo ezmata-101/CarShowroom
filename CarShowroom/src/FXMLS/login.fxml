@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="314.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
+<AnchorPane prefHeight="314.0" prefWidth="478.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
    <children>
-      <Pane fx:id="signInPane" prefHeight="314.0" prefWidth="478.0">
+      <Pane fx:id="signInPane" prefHeight="314.0" prefWidth="478.0" styleClass="signInPane">
          <children>
             <JFXTextField fx:id="userName1" layoutX="131.0" layoutY="101.0" prefHeight="26.0" prefWidth="216.0" promptText="User Name" />
             <JFXPasswordField fx:id="password1" layoutX="131.0" layoutY="151.0" prefHeight="26.0" prefWidth="216.0" promptText="Password" />
-            <JFXButton fx:id="signUpButton" layoutX="310.0" layoutY="218.0" onAction="#onSignUp" prefHeight="26.0" prefWidth="96.0" text="Sign Up" />
+            <JFXButton fx:id="signUpButton" layoutX="310.0" layoutY="218.0" onAction="#onSignUp" prefHeight="26.0" prefWidth="96.0" styleClass="signUpButton" text="Sign Up" />
             <Label layoutX="82.0" layoutY="223.0" onMouseClicked="#goToLogIn" text="Already a Manufacturer. Log in" />
          </children>
       </Pane>
-      <Pane fx:id="loginPane" prefHeight="314.0" prefWidth="478.0">
+      <Pane fx:id="loginPane" prefHeight="314.0" prefWidth="478.0" styleClass="loginPane">
          <children>
             <JFXTextField fx:id="userName" layoutX="131.0" layoutY="101.0" prefHeight="26.0" prefWidth="216.0" promptText="User Name" />
             <JFXPasswordField fx:id="password" layoutX="131.0" layoutY="151.0" prefHeight="26.0" prefWidth="216.0" promptText="Password" />
-            <JFXButton fx:id="loginButton" layoutX="310.0" layoutY="218.0" onAction="#onLogin" prefHeight="26.0" prefWidth="96.0" text="Login" />
+            <JFXButton fx:id="loginButton" layoutX="310.0" layoutY="218.0" onAction="#onLogin" prefHeight="26.0" prefWidth="96.0" styleClass="loginButton" text="Login" />
             <Label layoutX="82.0" layoutY="223.0" onMouseClicked="#goToSignUp" text="Sign Up as a manufacturer" />
          </children>
       </Pane>

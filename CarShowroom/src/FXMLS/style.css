@@ -2,9 +2,20 @@
     -fx-background-color:
             /*-fx-box-border,*/
             /*linear-gradient(to bottom, derive(-fx-accent,95%), derive(-fx-accent,10%)),*/
-            #2b2a5c; /* this line is the background color of the bar */
+            #8D2C41; /* this line is the background color of the bar */
     -fx-background-insets: 0, 1, 2;
     /*-fx-padding: 0.416667em; !* 5 *!*/
+}
+.splash {
+    -fx-background-color: linear-gradient(to right, #4C3770, #6E3D8A, #505E9F);
+}
+.splashNotification{
+}
+.signInPane{
+}
+.button{
+    -fx-border-color: black;
+    -fx-border-right: 5;
 }
 /*.progress-bar {*/
 /*    -fx-border-color: #7a72e5;*/

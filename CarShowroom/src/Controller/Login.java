@@ -5,14 +5,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,11 +21,20 @@ public class Login extends Controller implements Initializable {
 
 
     public void onLogin(ActionEvent actionEvent) {
-
+        System.out.println("Meo");
+        if(userName.getText().equals("")){
+            userName.setStyle("-fx-prompt-text-fill: darkred");
+            return;
+        }
+        client.sendMessage("login/"+userName.getText()+"/"+password.getText());
     }
 
     public void onSignUp(ActionEvent actionEvent) {
-
+        if(userName1.getText().equals("")){
+            userName1.setStyle("-fx-prompt-text-fill: darkred");
+            return;
+        }
+        client.sendMessage("signUp/"+userName1.getText()+"/"+password1.getText());
     }
 
     public void goToLogIn(MouseEvent mouseEvent) {

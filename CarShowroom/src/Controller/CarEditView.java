@@ -1,6 +1,7 @@
 package Controller;
 
 import Main.Car;
+import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -8,17 +9,34 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class CarView extends Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CarEditView extends Controller implements Initializable {
 
     public AnchorPane anchorPane;
     public Text reg_num, make, model, year, price, left;
+    public Rectangle color1;
+    public Rectangle color2;
+    public Rectangle color3;
     public ImageView car_image;
-    public Rectangle buy_rec, color1, color2, color3;
+    private Car car;
 
-    public void onBuy(MouseEvent mouseEvent) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void onEdit(MouseEvent mouseEvent) {
+        mainController.viewEdit(true);
+    }
+
+    public void onDelete(MouseEvent mouseEvent) {
+        mainController.sendToServer(car.delete());
     }
 
     public void setCar(Car car) {
+        this.car = car;
         reg_num.setText(car.getRegistrationNumber());
         make.setText(car.getMake());
         model.setText(car.getModel());
