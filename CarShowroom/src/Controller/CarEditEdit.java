@@ -27,7 +27,7 @@ public class CarEditEdit extends Controller implements Initializable {
     public Rectangle saveRec;
     public Text reg_num;
     public Rectangle cancelRec;
-    private Car car;
+    protected Car car;
 
     FileChooser fileChooser;
 
@@ -42,18 +42,26 @@ public class CarEditEdit extends Controller implements Initializable {
     }
 
     public void onSaveButton(MouseEvent mouseEvent) {
-        mainController.viewEdit(false);
-        car.setModel(model.getText());
-        car.setMake(make.getText());
-        car.setPrice(Integer.parseInt(price.getText()));
-        car.setYear(Integer.parseInt(year.getText()));
-        car.setQuantity(Integer.parseInt(left.getText()));
-        String color = color1.getValue() + "," + color2.getValue() + "," + color3.getValue();
-        car.setColorFromString(color);
-        mainController.setView(car);
-        mainController.createOrEditCar(car.getString(), car.getRegistrationNumber());
-
-        mainController.sendToServer(car.getString());
+        mainController.setMode(MainController.MANUFACTURER_VIEW_MODE);
+        setCar();
+    }
+    protected boolean setCar(){
+       try{
+           car.setModel(model.getText());
+           car.setMake(make.getText());
+           car.setPrice(Integer.parseInt(price.getText()));
+           car.setYear(Integer.parseInt(year.getText()));
+           car.setQuantity(Integer.parseInt(left.getText()));
+           String color = color1.getValue() + "," + color2.getValue() + "," + color3.getValue();
+           car.setColorFromString(color);
+           mainController.setView(car);
+           mainController.createOrEditCar(car.getString(), car.getRegistrationNumber());
+           mainController.sendToServer(car.getString());
+           return true;
+       }catch (Exception e){
+           System.out.println("Invalid Input(s)!");
+           return false;
+       }
     }
 
     public void onImageClick(MouseEvent mouseEvent) {
@@ -61,6 +69,7 @@ public class CarEditEdit extends Controller implements Initializable {
         File file = fileChooser.showOpenDialog(carEditEdit.getScene().getWindow());
         System.out.println(file.getAbsolutePath());
         car_image.setImage(new Image("file:///"+file.getAbsolutePath()));
+        System.out.println(file.getName());
     }
 
     @Override
@@ -90,6 +99,6 @@ public class CarEditEdit extends Controller implements Initializable {
 
     public void onCancel(MouseEvent mouseEvent) {
         setCar(car);
-        mainController.viewEdit(false);
+        mainController.setMode(MainController.MANUFACTURER_VIEW_MODE);
     }
 }

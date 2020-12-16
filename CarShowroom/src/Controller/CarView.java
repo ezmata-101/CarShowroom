@@ -1,39 +1,20 @@
 package Controller;
 
-import Main.Car;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
-public class CarView extends Controller {
-
-    public AnchorPane anchorPane;
-    public Text reg_num, make, model, year, price, left;
-    public ImageView car_image;
-    public Rectangle buy_rec, color1, color2, color3;
+public class CarView extends CarController {
 
     public void onBuy(MouseEvent mouseEvent) {
-    }
-
-    public void setCar(Car car) {
-        reg_num.setText(car.getRegistrationNumber());
-        make.setText(car.getMake());
-        model.setText(car.getModel());
-        year.setText(String.valueOf(car.getYear()));
-        price.setText(String.valueOf(car.getPrice()));
-        left.setText(String.valueOf(car.getQuantity()));
-        String[] color = car.getColors();
-        try{
-            if(color[0] != null) color1.setFill(Color.valueOf(color[0]));
-            if(color[1] != null) color2.setFill(Color.valueOf(color[1]));
-            if(color[2] != null) color3.setFill(Color.valueOf(color[2]));
-        }catch (Exception e){}
-        try{
-            car_image.setImage(car.getImage());
-        }catch (Exception e){
+        System.out.println("On Buy");
+        if(car.getQuantity() > 0){
+            car.buy();
+            setCar(car);
+            mainController.sendToServer(car.getString());
+        }else{
+            System.out.println("Red hoy na");
+            left.setText("OUT OF STOCK");
+            left.setFill(Color.DARKRED);
         }
     }
 }

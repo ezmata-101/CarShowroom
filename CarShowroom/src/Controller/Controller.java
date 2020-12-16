@@ -10,10 +10,6 @@ public class Controller {
     public void setClient(Client client) {
         this.client = client;
     }
-
-    public void setIsManufacturer(boolean isManufacturer) {
-        this.isManufacturer = isManufacturer;
-    }
     public void setMainController(MainController mainController){
         this.mainController = mainController;
     }

@@ -4,10 +4,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="474.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="462.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="582.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -25,7 +29,17 @@
           </Menu>
         </menus>
       </MenuBar>
-      <JFXListView fx:id="listView" layoutY="27.0" onMouseClicked="#onCarSelection" prefHeight="448.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
-      <Pane fx:id="detailPane" layoutX="370.0" layoutY="26.0" prefHeight="448.0" prefWidth="315.0" />
+      <JFXListView fx:id="listView" layoutY="27.0" onMouseClicked="#onCarSelection" prefHeight="440.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="26.0" />
+      <Pane fx:id="detailPane" layoutX="370.0" layoutY="26.0" prefHeight="440.0" prefWidth="315.0" />
+      <StackPane fx:id="addButton" layoutY="422.0" onMouseClicked="#onAddButton" prefHeight="44.0" prefWidth="370.0">
+         <children>
+            <Rectangle fx:id="add_rec" arcHeight="25.0" arcWidth="25.0" fill="#1fffbf" height="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="360.0" />
+            <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Cache/plus.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

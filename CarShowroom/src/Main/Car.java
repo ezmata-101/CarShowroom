@@ -205,4 +205,8 @@ public class Car {
     public String delete() {
         return "DELETE_CAR/"+string();
     }
+
+    public void buy() {
+        quantity -= 1;
+    }
 }

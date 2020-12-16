@@ -42,7 +42,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <JFXTextField fx:id="reg_num" prefHeight="26.0" prefWidth="201.0" />
+                        <JFXTextField fx:id="reg_num_edit" prefHeight="26.0" prefWidth="201.0" />
                      </children>
                   </HBox>
                </children>

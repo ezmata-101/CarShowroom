@@ -29,6 +29,9 @@ public class Client implements Runnable{
         }
         return client;
     }
+    public static Client getInstance(){
+        return client;
+    }
 
     private void connectToServer() {
         try{
@@ -55,7 +58,7 @@ public class Client implements Runnable{
             if(ss[1].equalsIgnoreCase("successful")){
                 Platform.runLater(() -> {
                     main.changePane("main", "Car Warehouse ("+ ss[2].toUpperCase() +")", this);
-                    main.setIsManufacturer(ss[2].equalsIgnoreCase("manufacturer"));
+                    mainController.setIsManufacturer(ss[2].equalsIgnoreCase("manufacturer"));
                 });
 
             }
@@ -100,6 +103,7 @@ public class Client implements Runnable{
 
     public void setMainController(Controller currentController) {
         MainController controller = (MainController) currentController;
+        controller.setDetailViews();
         try{
             setMainController(controller);
         }catch (Exception e){

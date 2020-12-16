@@ -43,10 +43,6 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void setIsManufacturer(boolean isManufacturer){
-        currentController.setIsManufacturer(isManufacturer);
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
