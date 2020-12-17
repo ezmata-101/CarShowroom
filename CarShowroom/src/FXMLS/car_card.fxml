@@ -3,35 +3,47 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="carCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onSelect" prefHeight="130.0" prefWidth="330.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CarCard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onSelect" prefHeight="93.0" prefWidth="300.0" style=": ; -fx-border-color: ;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CarCard">
    <children>
-      <ImageView fx:id="carImage" fitHeight="120.0" fitWidth="120.0" layoutX="419.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="93.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="300.0">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="0.20992363500231093">
+               <stops>
+                  <Stop color="#b4cce2" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fx:id="carImage" fitHeight="82.0" fitWidth="104.0" layoutX="208.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="34.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="3.0">
          <image>
             <Image url="@../Cache/default_car.png" />
          </image>
       </ImageView>
-      <Text fx:id="carMake" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota" wrappingWidth="179.73676300048828" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.0">
+      <Text fx:id="carMake" layoutX="10.0" layoutY="26.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota" wrappingWidth="179.73676300048828" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="carModel" layoutX="10.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COROLLA" wrappingWidth="224.53668975830078" AnchorPane.leftAnchor="10.0">
+      <Text fx:id="carModel" layoutX="10.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COROLLA" wrappingWidth="224.53668975830078" AnchorPane.leftAnchor="10.0">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Text fx:id="year" layoutX="130.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020" wrappingWidth="53.3368034362793">
+      <Text fx:id="year" layoutX="138.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020" wrappingWidth="53.3368034362793">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Circle fx:id="color1" layoutX="120.0" layoutY="100.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle fx:id="color1" layoutX="119.0" layoutY="70.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.5" cycleMethod="REPEAT" radius="0.9018691767041929">
                <stops>
@@ -41,7 +53,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle fx:id="color2" layoutX="147.0" layoutY="100.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle fx:id="color2" layoutX="146.0" layoutY="70.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.8177569736944181">
                <stops>
@@ -51,7 +63,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle fx:id="color3" layoutX="177.0" layoutY="100.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle fx:id="color3" layoutX="176.0" layoutY="70.0" radius="11.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.7897195726911599">
                <stops>
@@ -61,7 +73,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Text fx:id="price" layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22000$" wrappingWidth="92.53681564331055">
+      <Text fx:id="price" layoutX="13.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22000$" wrappingWidth="92.53681564331055">
          <font>
             <Font size="18.0" />
          </font>

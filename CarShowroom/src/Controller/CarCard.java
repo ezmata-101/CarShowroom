@@ -32,6 +32,7 @@ public class CarCard extends Controller{
     }
 
     public void onSelect(MouseEvent mouseEvent) {
+        mainController.onCarSelection(mouseEvent);
         mainController.setView(car);
     }
 }
