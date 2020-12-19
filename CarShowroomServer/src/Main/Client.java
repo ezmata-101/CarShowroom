@@ -2,6 +2,7 @@ package Main;
 
 import Classes.Car;
 import Database.Database;
+import FileTransfer.FileTransfer;
 import org.json.simple.JSONObject;
 
 import java.io.DataInputStream;
@@ -47,7 +48,17 @@ public class Client implements Runnable{
             }
             else server.requestLogin(ss[1], ss[2], this);
         }
+        if(ss[0].equals("SENDING_IMAGE")) receiveFile();
         if(ss[0].equals("request:sendCars")) server.sendAllCarsTo(this);
+    }
+
+    private void receiveFile() {
+        FileTransfer ft = new FileTransfer(socket);
+        try {
+            ft.receiveFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

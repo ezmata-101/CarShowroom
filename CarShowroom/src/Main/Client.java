@@ -2,10 +2,12 @@ package Main;
 
 import Controller.Controller;
 import Controller.MainController;
+import FileTransfer.FileTransfer;
 import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -108,6 +110,16 @@ public class Client implements Runnable{
             setMainController(controller);
         }catch (Exception e){
             System.out.println("Exception Occurs");
+        }
+    }
+
+    public void sendFile(File file) {
+        sendMessage("SENDING_IMAGE");
+        FileTransfer ft = new FileTransfer(socket);
+        try {
+            ft.sendFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

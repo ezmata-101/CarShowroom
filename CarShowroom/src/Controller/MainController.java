@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -170,6 +171,9 @@ public class MainController extends Controller implements Initializable {
 
     public void sendToServer(String message) {
         client.sendMessage(message);
+    }
+    public void sendToServer(File file){
+        client.sendFile(file);
     }
     public void setMode(int mode){
         view.setVisible(false);

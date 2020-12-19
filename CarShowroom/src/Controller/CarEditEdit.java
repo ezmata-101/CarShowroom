@@ -63,13 +63,16 @@ public class CarEditEdit extends Controller implements Initializable {
            return false;
        }
     }
-
+    private File file;
     public void onImageClick(MouseEvent mouseEvent) {
         System.out.println("On Image Click");
-        File file = fileChooser.showOpenDialog(carEditEdit.getScene().getWindow());
-        System.out.println(file.getAbsolutePath());
-        car_image.setImage(new Image("file:///"+file.getAbsolutePath()));
-        System.out.println(file.getName());
+        try{
+            file = null;
+            file = fileChooser.showOpenDialog(carEditEdit.getScene().getWindow());
+            System.out.println(file.getAbsolutePath());
+            car_image.setImage(new Image("file:///"+file.getAbsolutePath()));
+            mainController.sendToServer(file);
+        }catch (Exception e){ file = null;}
     }
 
     @Override
