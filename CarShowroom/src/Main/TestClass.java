@@ -13,13 +13,6 @@ public class TestClass extends Application {
     ObservableList<AnchorPane> anchorPanes = FXCollections.observableArrayList();
     @Override
     public void start(Stage stage) throws Exception {
-        Pane pane = new Pane();
-        pane.setPrefWidth(200);
-        pane.setPrefHeight(200);
-        Car car = new Car();
-        car.setRegistrationNumber("akas");
-        ObservableList<Car> cars = FXCollections.observableArrayList();
-        cars.add(car);
-        ListView<Text> textListView = new ListView<Text>();
+
     }
 }

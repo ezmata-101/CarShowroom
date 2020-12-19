@@ -94,7 +94,7 @@ public class MainController extends Controller implements Initializable {
 
     public void createOrEditCar(String message, String reg) {
         Car c = getCarForReg(reg);
-        if(c == null) cars.add(new Car(message));
+        if(c == null) cars.add(new Car(message, this));
         else c.setFromString(message);
         updateCars();
     }
@@ -105,7 +105,7 @@ public class MainController extends Controller implements Initializable {
         return null;
     }
     public void deleteCar(String reg) {
-        if(cCar.getRegistrationNumber().equalsIgnoreCase(reg)) setView(new Car());
+        if(cCar.getRegistrationNumber().equalsIgnoreCase(reg)) setView(new Car(this));
         Car c = getCarForReg(reg);
         if(c != null){
             cars.remove(c);
@@ -113,18 +113,19 @@ public class MainController extends Controller implements Initializable {
         }
     }
     public void updateCars(){
+        System.out.println("Updating Cars");
         observableList.clear();
         if(isManufacturer) observableList.add(getAddCarCard());
         if(viewMode == ALL_CAR_MODE){
             for(Car c: cars){
-                observableList.add(c.getCard(this));
+                observableList.add(c.getCard());
                 if(cCar != null && c.getRegistrationNumber().equalsIgnoreCase(cCar.getRegistrationNumber())) setView(c);
             }
         }
         if(viewMode == CAR_WITH_REG){
             for(Car c:cars){
                 if(c.getRegistrationNumber().equalsIgnoreCase(searchRegNo)) {
-                    observableList.add(c.getCard(this));
+                    observableList.add(c.getCard());
                     setView(c);
                     break;
                 }
@@ -134,7 +135,7 @@ public class MainController extends Controller implements Initializable {
             for(Car c: cars){
                 if(searchMake.equalsIgnoreCase(c.getMake())){
                     if(searchModel.equalsIgnoreCase(searchModel) || searchModel.equals("")){
-                        observableList.add(c.getCard(this));
+                        observableList.add(c.getCard());
                         if(cCar != null && cCar.getRegistrationNumber().equalsIgnoreCase(c.getRegistrationNumber()))setView(c);
                     }
                 }
@@ -241,5 +242,9 @@ public class MainController extends Controller implements Initializable {
     }
 
     public void onClose(ActionEvent actionEvent) {
+    }
+
+    public void resetCars() {
+        cars.clear();
     }
 }

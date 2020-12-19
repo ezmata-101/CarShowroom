@@ -71,6 +71,20 @@ public class Client implements Runnable{
         if(ss[0].equals("DELETE_CAR")){
             Platform.runLater(() -> mainController.deleteCar(ss[1]));
         }
+        if(ss[0].equals("CAR_IMAGE")){
+            FileTransfer ft = new FileTransfer(socket);
+            try {
+                ft.receiveFile();
+//                mainController.resetCars();
+                requestCars();
+                Platform.runLater(()->{
+                    System.out.print("After Receiving Files");
+                    mainController.updateCars();
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -88,6 +102,7 @@ public class Client implements Runnable{
     }
 
     private void requestCars() {
+        System.out.println("REQUESTED CARS");
         sendMessage("request:sendCars");
     }
 

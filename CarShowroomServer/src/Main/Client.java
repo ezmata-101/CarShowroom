@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -50,6 +51,20 @@ public class Client implements Runnable{
         }
         if(ss[0].equals("SENDING_IMAGE")) receiveFile();
         if(ss[0].equals("request:sendCars")) server.sendAllCarsTo(this);
+        if(ss[0].equals("request:carImage")) sendImage(ss[1]);
+    }
+
+    private void sendImage(String fileName) {
+        File file = new File("src/CarImages/"+fileName);
+        if(file.exists()){
+            send("CAR_IMAGE");
+            FileTransfer ft = new FileTransfer(socket);
+            try {
+                ft.sendFile(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void receiveFile() {

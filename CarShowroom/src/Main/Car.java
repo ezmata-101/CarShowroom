@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -18,11 +19,13 @@ public class Car {
     private int price;
     private int quantity;
     private String location;
-    public Car(){}
-    public Car(String s){
+    public Car(MainController m){this.mainController = m;}
+    public Car(String s, MainController m) {
+        this(m);
         setFromString(s);
     }
-    public Car(String registrationNumber, String make, String model, String[] colors, int year, int price, int quantity, String location) {
+    public Car(MainController m, String registrationNumber, String make, String model, String[] colors, int year, int price, int quantity, String location) {
+        this(m);
         this.registrationNumber = registrationNumber;
         this.make = make;
         this.model = model;
@@ -138,49 +141,15 @@ public class Car {
         setPrice(Integer.parseInt(ss[6]));
         setQuantity(Integer.parseInt(ss[7]));
         setLocation(ss[8]);
-    }
-    @Override
-    public String toString() {
-        String s = new String("");
-
-        return "Car{" +
-                "\n\t\tregistrationNumber='" + registrationNumber + '\'' +
-                ", \n\t\tmake='" + make + '\'' +
-                ", \n\t\tmodel='" + model + '\'' +
-                ", \n\t\tcolors=" + Arrays.toString(colors) +
-                ", \n\t\tyear=" + year +
-                ", \n\t\tprice=" + price +
-                ", \n\t\tquantity=" + quantity +
-                ", \n\t\tlocation='" + location + '\'' +
-                '}';
+        carCardPane = null;
+        image = null;
+        setImage();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        try{
-            Car c = (Car) obj;
-            return c.registrationNumber.equalsIgnoreCase(this.registrationNumber);
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    public static void main(String[] args) {
-        Car c = new Car("abc123", "Toyota", "Corolla", new String[]{"WHITE", "BLACK"}, 2020, 2200000, 2, "null");
-        System.out.println(c);
-        System.out.println(c.getString());
-        Car d = new Car();
-        d.setFromString(c.getString());
-        System.out.println(d.getString());
-        System.out.println(d);
-        Car e = new Car();
-        e.setFromString(d.getString());
-        System.out.println(e.getString());
-        System.out.println(e);
-    }
     private CarCard carCard;
     private AnchorPane carCardPane;
-    public AnchorPane getCard(MainController m) {
+    private MainController mainController;
+    public AnchorPane getCard() {
         if(carCardPane == null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXMLS/car_card.fxml"));
             try {
@@ -189,17 +158,28 @@ public class Car {
                 e.printStackTrace();
             }
             this.carCard = loader.getController();
+            this.carCard.setCar(this, mainController);
         }
-        this.carCard.setCar(this, m);
         return carCardPane;
     }
-
+    private Image image;
     public Image getImage() {
-        if(!location.equalsIgnoreCase("null")){
-            Image image = new Image("../Cache/"+location);
-            return image;
+        if(image == null) setImage();
+        return image;
+    }
+    private void setImage(){
+        image = new Image("Cache/default_car.png");
+        if(location.equals("null")) return;
+        try{
+            File file = new File("src/CarImages/"+location);
+            if(!file.exists()){
+                mainController.sendToServer("request:carImage/"+location);
+                return;
+            }
+            image = new Image("file:///"+file.getAbsolutePath());
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return new Image("../Cache/default_car.png");
     }
 
     public String delete() {

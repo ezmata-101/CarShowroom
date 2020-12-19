@@ -66,7 +66,7 @@ public class Server{
             database.insertNewCar(car);
         }
         for(Client c: clients){
-            if(c!=client) c.send(s);
+            c.send(s);
         }
     }
 

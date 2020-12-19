@@ -12,7 +12,7 @@ public class CarAdd extends CarEditEdit{
     }
 
     public void onCreateCar(MouseEvent mouseEvent) {
-        car = new Car();
+        car = new Car(mainController);
         car.setRegistrationNumber(reg_num_edit.getText());
         if(setCar()) mainController.setMode(MainController.MANUFACTURER_VIEW_MODE);
     }

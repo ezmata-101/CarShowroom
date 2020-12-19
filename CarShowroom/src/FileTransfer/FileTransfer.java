@@ -99,6 +99,6 @@ public class FileTransfer {
 //        update.closeThread();
         bos.flush();
         bos.close();
-        System.out.println("sdfasdf "+file.length());
+        System.out.println("File Transfer Completed "+file.length());
     }
 }

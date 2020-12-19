@@ -54,6 +54,9 @@ public class CarEditEdit extends Controller implements Initializable {
            car.setQuantity(Integer.parseInt(left.getText()));
            String color = color1.getValue() + "," + color2.getValue() + "," + color3.getValue();
            car.setColorFromString(color);
+           if(file != null){
+               car.setLocation(file.getName());
+           }
            mainController.setView(car);
            mainController.createOrEditCar(car.getString(), car.getRegistrationNumber());
            mainController.sendToServer(car.getString());
