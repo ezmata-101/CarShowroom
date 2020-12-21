@@ -7,6 +7,7 @@ public class CarEditView extends CarController{
         mainController.setMode(MainController.MANUFACTURER_EDIT_MODE);
     }
     public void onDelete(MouseEvent mouseEvent) {
+        if(car == null) return;
         mainController.setMode(MainController.EMPTY);
         mainController.sendToServer(car.delete());
     }

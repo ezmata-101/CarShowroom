@@ -134,7 +134,7 @@ public class MainController extends Controller implements Initializable {
         if(viewMode == CAR_WITH_MAKE_N_MODEL){
             for(Car c: cars){
                 if(searchMake.equalsIgnoreCase(c.getMake())){
-                    if(searchModel.equalsIgnoreCase(searchModel) || searchModel.equals("")){
+                    if(searchModel.equalsIgnoreCase(c.getModel()) || searchModel.equals("")){
                         observableList.add(c.getCard());
                         if(cCar != null && cCar.getRegistrationNumber().equalsIgnoreCase(c.getRegistrationNumber()))setView(c);
                     }

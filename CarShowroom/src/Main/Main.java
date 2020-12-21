@@ -12,14 +12,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-    Stage stage;
-    Controller currentController;
-    private double offsetX = 0;
-    private double offsetY = 0;
+    private Stage stage;
+    private Controller currentController;
+    private Client client;
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
-        Client client = Client.getInstance(this);
+        client = Client.getInstance(this);
         changePane("login", "Welcome Page", client);
     }
     public void changePane(String fxml, String stageName, Client client){
@@ -33,22 +32,9 @@ public class Main extends Application {
         AnchorPane pane = null;
         try{
             pane = loader.load();
-            pane.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    offsetX = mouseEvent.getSceneX();
-                    offsetY = mouseEvent.getSceneY();
-                }
-            });
-            pane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage.setX(mouseEvent.getScreenX() - offsetX);
-                    stage.setY(mouseEvent.getScreenY() - offsetY);
-                }
-            });
             stage.setResizable(true);
             stage.setScene(new Scene(pane));
+            stage.setOnCloseRequest(e -> close());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,6 +45,14 @@ public class Main extends Application {
         currentController.setClient(client);
         if(fxml.equalsIgnoreCase("main"))client.setMainController(currentController);
         stage.show();
+    }
+
+    private void close() {
+        client.disconnect();
+    }
+
+    public void setNotification(String notification){
+        currentController.setNotification(notification);
     }
 
     public static void main(String[] args) {

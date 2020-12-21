@@ -4,10 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -18,6 +21,8 @@ public class Login extends Controller implements Initializable {
     public JFXTextField userName,userName1;
     public JFXButton loginButton, signUpButton;
     public Pane signInPane, loginPane;
+    public StackPane notificationPane;
+    public Text notificationText;
 
 
     public void onLogin(ActionEvent actionEvent) {
@@ -62,5 +67,12 @@ public class Login extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         signInPane.setVisible(false);
+        notificationPane.setVisible(false);
+    }
+    public void setNotification(String notification){
+        Platform.runLater(() -> {
+            notificationPane.setVisible(true);
+            notificationText.setText(notification);
+        });
     }
 }

@@ -56,13 +56,15 @@ public class Client implements Runnable{
     private void handleMessage(String message) {
         String ss[] = message.split("/");
         System.out.println(message);
-        if(ss[0].equals("login")){
+        if(ss[0].equals("login") || ss[0].equals("signUp")){
             if(ss[1].equalsIgnoreCase("successful")){
                 Platform.runLater(() -> {
                     main.changePane("main", "Car Warehouse ("+ ss[2].toUpperCase() +")", this);
                     mainController.setIsManufacturer(ss[2].equalsIgnoreCase("manufacturer"));
                 });
-
+            }
+            else{
+                main.setNotification(ss[2]);
             }
         }
         if(ss[0].equals("CAR_OBJECT")){
@@ -135,6 +137,14 @@ public class Client implements Runnable{
             ft.sendFile(file);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public void disconnect(){
+        try{
+            dataInputStream.close();
+            dataOutputStream.close();
+            socket.close();
+        } catch (IOException e) {
         }
     }
 }

@@ -49,6 +49,7 @@ public class Client implements Runnable{
             }
             else server.requestLogin(ss[1], ss[2], this);
         }
+        if(ss[0].equals("signUp")) server.handleSignUp(ss[1], ss[2], this);
         if(ss[0].equals("SENDING_IMAGE")) receiveFile();
         if(ss[0].equals("request:sendCars")) server.sendAllCarsTo(this);
         if(ss[0].equals("request:carImage")) sendImage(ss[1]);

@@ -96,4 +96,14 @@ public class Server{
             c.send(message);
         }
     }
+
+    public void handleSignUp(String userName, String password, Client client) {
+        int id = database.getIdForName(userName);
+        if(id != -1) client.send("signUp/failed/User Name Already Exists. Try logging in.");
+        else{
+            if(database.insertNewManufacturer(userName, password)){
+                client.send("signUp/successful");
+            }else client.send("signUp/failed/Server Error!");
+        }
+    }
 }

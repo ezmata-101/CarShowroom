@@ -63,7 +63,7 @@ interface Constants {
     String INSERT_INTO_MANUFACTURERS =
             "INSERT INTO "+ MANUFACTURERS_TABLE+" ("+
                     NAME_COLUMN+", "+
-                    PASSWORD_COLUMN+") "+
+                    PASSWORD_COLUMN+" ) "+
                     "VALUES (?, ?)";
     String GET_ID_FOR_NAME =
             "SELECT COUNT(*), "+ID_COLUMN+" FROM "+MANUFACTURERS_TABLE+ " WHERE "+NAME_COLUMN+" = ? ";

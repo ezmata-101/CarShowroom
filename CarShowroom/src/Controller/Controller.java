@@ -13,4 +13,8 @@ public class Controller {
     public void setMainController(MainController mainController){
         this.mainController = mainController;
     }
+
+    public void setNotification(String notification) {
+//        System.out.println("NOTIFICATION: "+notification);
+    }
 }

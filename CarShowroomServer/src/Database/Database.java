@@ -158,6 +158,20 @@ public class Database implements Constants{
             throwables.printStackTrace();
         }
     }
+
+    public boolean insertNewManufacturer(String userName, String password) {
+        System.out.println("Trying to insert!");
+        try {
+            PreparedStatement statement = connection.prepareStatement(INSERT_INTO_MANUFACTURERS);
+            statement.setString(1, userName);
+            statement.setString(2, password);
+            statement.execute();
+            return true;
+        } catch (SQLException throwables) {
+            Log.print(throwables);
+            return false;
+        }
+    }
 }
 
 class Log{
