@@ -2,6 +2,7 @@ package Main;
 
 import Controller.Controller;
 import Controller.MainController;
+import Controller.AdminController;
 import FileTransfer.FileTransfer;
 import javafx.application.Platform;
 
@@ -19,6 +20,8 @@ public class Client implements Runnable{
     private DataOutputStream dataOutputStream;
     private Thread thread;
     private MainController mainController;
+    private AdminController admin;
+
     private static Client client;
     private Client(){
     }
@@ -56,6 +59,14 @@ public class Client implements Runnable{
     private void handleMessage(String message) {
         String ss[] = message.split("/");
         System.out.println(message);
+        if(ss[0].equals("admin")){
+            Platform.runLater(()->main.changePane("admin", "Car Warehouse (ADMIN)", this));
+        }
+        if(ss[0].equals("MANUFACTURER")) {
+            if(ss[1].equals("DELETE")) Platform.runLater(() -> admin.delete(ss[2]));
+            else if(ss[1].equals("FAILED")) return;
+            else Platform.runLater(() -> admin.addOrEdit(ss[1], ss[2]));
+        }
         if(ss[0].equals("login") || ss[0].equals("signUp")){
             if(ss[1].equalsIgnoreCase("successful")){
                 Platform.runLater(() -> {
@@ -146,5 +157,9 @@ public class Client implements Runnable{
             socket.close();
         } catch (IOException e) {
         }
+    }
+    public void setAdmin(Controller currentController) {
+        admin = (AdminController) currentController;
+        sendMessage("request:manufacturers");
     }
 }

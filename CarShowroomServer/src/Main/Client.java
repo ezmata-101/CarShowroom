@@ -3,7 +3,6 @@ package Main;
 import Classes.Car;
 import Database.Database;
 import FileTransfer.FileTransfer;
-import org.json.simple.JSONObject;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,6 +18,10 @@ public class Client implements Runnable{
     private DataOutputStream dataOutputStream;
     private boolean isOnline = false;
     private Thread thread;
+    public static final int VIEWER = 1;
+    public static final int MANUFACTURER = 2;
+    public static final int ADMIN = 3;
+    private int mode = 0;
     public Client(Server server, Socket socket, Database database) {
         this.server = server;
         this.socket = socket;
@@ -46,13 +49,22 @@ public class Client implements Runnable{
         if(ss[0].equals("login")){
             if(ss[1].equalsIgnoreCase("viewer")){
                 send("login/successful/viewer");
+                mode = VIEWER;
             }
             else server.requestLogin(ss[1], ss[2], this);
         }
         if(ss[0].equals("signUp")) server.handleSignUp(ss[1], ss[2], this);
+        if(s.equals("login/admin/admin")){
+            mode = ADMIN;
+            send("admin/successful");
+        }
         if(ss[0].equals("SENDING_IMAGE")) receiveFile();
         if(ss[0].equals("request:sendCars")) server.sendAllCarsTo(this);
         if(ss[0].equals("request:carImage")) sendImage(ss[1]);
+        if(ss[0].equals("request:manufacturers")) server.sendAllManufacturers(this);
+        if(ss[0].equals("MANUFACTURER") && ss[1].equals("DELETE")) server.deleteManufacturer(ss[2]);
+        if(ss[0].equals("MANUFACTURER") && ss[1].equals("EDIT")) server.updateManufacturer(ss[2], ss[3], ss[4], this);
+        if(ss[0].equals("MANUFACTURER") && ss[1].equals("ADD")) server.addManufacturer(ss[3], ss[4], this);
     }
 
     private void sendImage(String fileName) {
@@ -99,5 +111,11 @@ public class Client implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getMode(){return mode;}
+
+    public void setMode(int mode) {
+        this.mode = mode;
     }
 }

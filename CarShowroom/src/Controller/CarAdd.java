@@ -17,7 +17,7 @@ public class CarAdd extends CarEditEdit {
     }
 
     public void onImageClick(MouseEvent mouseEvent) {
-        System.out.println("On Image Click");
+//        System.out.println("On Image Click");
         File file = fileChooser.showOpenDialog(carAdd.getScene().getWindow());
         handleImageChange(file);
     }

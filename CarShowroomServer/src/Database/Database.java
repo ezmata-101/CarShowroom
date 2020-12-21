@@ -37,7 +37,7 @@ public class Database implements Constants{
                 cars.add(createCarFromResultSet(resultSet));
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Log.print(throwables);
         }
         return cars;
     }
@@ -170,6 +170,42 @@ public class Database implements Constants{
         } catch (SQLException throwables) {
             Log.print(throwables);
             return false;
+        }
+    }
+
+    public List<String> getAllManufacturers() {
+        List<String> manufacturers = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(GET_ALL_MANUFACTURERS);
+            while(resultSet.next()){
+                manufacturers.add(resultSet.getString(1));
+            }
+        } catch (SQLException throwables) {
+            Log.print(throwables);
+        }
+        return manufacturers;
+    }
+
+    public void deleteManufacturer(String name) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_MANUFACTURER);
+            preparedStatement.setString(1, name);
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public void updateManufacturer(int id, String currentName, String currentPass) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MANUFACTURER_FOR_ID);
+            preparedStatement.setString(1, currentName);
+            preparedStatement.setString(2, currentPass);
+            preparedStatement.setInt(3, id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }

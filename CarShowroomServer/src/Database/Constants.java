@@ -34,10 +34,11 @@ interface Constants {
                     IMAGE_COLUMN+") "+
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     String GET_ALL_CARS = "SELECT * FROM "+CARS_TABLE;
+    String GET_ALL_MANUFACTURERS = "SELECT "+NAME_COLUMN+" FROM "+MANUFACTURERS_TABLE;
     String updateCarStart = "UPDATE "+CARS_TABLE+ " SET ";
     String updateCarEnd = " = ? "+ " WHERE "+ID_COLUMN+" = ? ";
     String DELETE_CAR_FOR_REG = "DELETE FROM "+CARS_TABLE+" WHERE "+REG_NUM_COLUMN+" = ?";
-
+    String DELETE_MANUFACTURER = "DELETE FROM "+MANUFACTURERS_TABLE+" WHERE "+NAME_COLUMN+" = ?";
     String UPDATE_CAR_REG_NUM = updateCarStart+REG_NUM_COLUMN+updateCarEnd;
     String UPDATE_CAR_MAKE_NAME = updateCarStart+MAKE_COLUMN+updateCarEnd;
     String UPDATE_CAR_MODEL_NAME = updateCarStart+MODEL_COLUMN+updateCarEnd;
@@ -55,6 +56,10 @@ interface Constants {
             QUANTITY_COLUMN+" = ?,"+
             IMAGE_COLUMN+" = ?"+
             " WHERE "+REG_NUM_COLUMN+" = ?";
+    String UPDATE_MANUFACTURER_FOR_ID = "UPDATE "+MANUFACTURERS_TABLE+" SET "+
+            NAME_COLUMN+" = ?, "+
+            PASSWORD_COLUMN+" = ? "+
+            " WHERE "+ID_COLUMN+" + ?";
 
     String GET_ID_FOR_REG_NUM =
             "SELECT COUNT(*), "+ID_COLUMN+" FROM "+CARS_TABLE+" WHERE "+REG_NUM_COLUMN+" = ?";

@@ -113,7 +113,7 @@ public class MainController extends Controller implements Initializable {
         }
     }
     public void updateCars(){
-        System.out.println("Updating Cars");
+//        System.out.println("Updating Cars");
         observableList.clear();
         if(isManufacturer) observableList.add(getAddCarCard());
         if(viewMode == ALL_CAR_MODE){
@@ -239,6 +239,7 @@ public class MainController extends Controller implements Initializable {
     }
 
     public void onSignOut(ActionEvent actionEvent) {
+        main.changePane("login", "Login Page", client);
     }
 
     public void onClose(ActionEvent actionEvent) {
