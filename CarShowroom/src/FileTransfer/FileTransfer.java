@@ -20,11 +20,8 @@ public class FileTransfer {
     }
     public void requestSendFile(File file){
         try {
-            System.out.println("Wrote: req");
             dos.writeUTF("UPLOAD_REQUEST/"+file.getName());
-            System.out.println("Current time: "+System.currentTimeMillis());
             String response = dis.readUTF();
-            System.out.println("Read: "+response);
             if(response.equals("UPLOAD_DENIED")) return;
             sendFile(file);
         } catch (IOException e) {
@@ -54,7 +51,6 @@ public class FileTransfer {
         }catch (IOException e){}
     }
     public void sendFile(File file) throws IOException{
-        System.out.println("Sending File!");
         dos.writeUTF("FILE_NAME/"+file.getName());
         long fileSize = file.length();
         Update update = new Update(fileSize);
@@ -70,7 +66,6 @@ public class FileTransfer {
             if(n == -1) break;
             dos.write(buffer, 0, n);
         }
-        System.out.println("Closed!");
         update.closeThread();
         dos.flush();
         bis.close();
@@ -78,27 +73,19 @@ public class FileTransfer {
 
     public void receiveFile() throws IOException{
         String message = dis.readUTF();
-        System.out.println(message);
         String[] ss = message.split("/");
         if(!ss[0].equals("FILE_NAME")) return;
         File file = new File("src/CarImages/"+ss[1]);
         file.createNewFile();
-        System.out.println("Created New File: "+file.getAbsolutePath());
         long totalLength = dis.readLong();
-//        Update update = new Update(totalLength);
-//        update.startThread();
-        System.out.println("FILE SIZE: "+totalLength);
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
         byte[] buffer = new byte[CHUNK_SIZE];
         while(totalLength > 0){
             int n = dis.read(buffer, 0, CHUNK_SIZE);
             bos.write(buffer, 0, n);
             totalLength -= n;
-//            update.addToProgress(n);
         }
-//        update.closeThread();
         bos.flush();
         bos.close();
-        System.out.println("File Transfer Completed "+file.length());
     }
 }

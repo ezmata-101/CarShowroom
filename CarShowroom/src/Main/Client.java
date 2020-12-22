@@ -58,7 +58,7 @@ public class Client implements Runnable{
 
     private void handleMessage(String message) {
         String ss[] = message.split("/");
-        System.out.println(message);
+//        System.out.println(message);
         if(ss[0].equals("admin")){
             Platform.runLater(()->main.changePane("admin", "Car Warehouse (ADMIN)", this));
         }
@@ -88,10 +88,8 @@ public class Client implements Runnable{
             FileTransfer ft = new FileTransfer(socket);
             try {
                 ft.receiveFile();
-//                mainController.resetCars();
                 requestCars();
                 Platform.runLater(()->{
-                    System.out.print("After Receiving Files");
                     mainController.updateCars();
                 });
             } catch (IOException e) {
@@ -102,7 +100,7 @@ public class Client implements Runnable{
 
 
     public void sendMessage(String message){
-        System.out.println("Wrote: "+message);
+//        System.out.println("Wrote: "+message);
         try {
             dataOutputStream.writeUTF(message);
         } catch (IOException e) {
@@ -115,7 +113,7 @@ public class Client implements Runnable{
     }
 
     private void requestCars() {
-        System.out.println("REQUESTED CARS");
+//        System.out.println("REQUESTED CARS");
         sendMessage("request:sendCars");
     }
 
@@ -137,7 +135,7 @@ public class Client implements Runnable{
         try{
             setMainController(controller);
         }catch (Exception e){
-            System.out.println("Exception Occurs");
+//            System.out.println("Exception Occurs");
         }
     }
 

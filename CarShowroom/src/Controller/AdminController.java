@@ -59,7 +59,6 @@ public class AdminController extends Controller implements Initializable {
 
     private void editManufacturer() {
         lastCommand = "EDIT";
-        //System.out.println(lastSelected);
         userName.setText(lastSelected);
         password.setText("");
         password.setPromptText("Password");
@@ -68,7 +67,6 @@ public class AdminController extends Controller implements Initializable {
 
     public void onSelect(MouseEvent mouseEvent) {
         lastSelected = (String) listView.getSelectionModel().getSelectedItem();
-//        System.out.println(lastSelected);
     }
 
     public void addOrEdit(String prev, String current) {

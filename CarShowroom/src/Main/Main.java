@@ -22,12 +22,9 @@ public class Main extends Application {
         changePane("login", "Welcome Page", client);
     }
     public void changePane(String fxml, String stageName, Client client){
-        System.out.println("Asked to change!");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXMLS/"+fxml+".fxml"));
-//        System.out.println(loader);
         if(stage != null)stage.close();
         stage = new Stage();
-//        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle(stageName);
         AnchorPane pane = null;
         try{
@@ -38,9 +35,7 @@ public class Main extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
-//            System.out.println("Failed to load from FXML!");
         }
-//        System.out.println(pane);
         currentController = loader.getController();
         currentController.setClient(client);
         currentController.setMain(this);

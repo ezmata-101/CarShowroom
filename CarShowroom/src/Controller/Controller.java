@@ -20,6 +20,5 @@ public class Controller {
     }
 
     public void setNotification(String notification) {
-//        System.out.println("NOTIFICATION: "+notification);
     }
 }

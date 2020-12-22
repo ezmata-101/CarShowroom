@@ -31,14 +31,12 @@ public class CarEditEdit extends Controller implements Initializable {
 
     FileChooser fileChooser;
 
-    public void onColor1(ActionEvent actionEvent) {
-        System.out.println("On Color 1");
-    }
+    public void onColor1(ActionEvent actionEvent) { }
 
     public void onColor2(ActionEvent actionEvent) { }
 
     public void onColor3(ActionEvent actionEvent) {
-        System.out.println("On Color 3");
+
     }
 
     public void onSaveButton(MouseEvent mouseEvent) {
@@ -63,7 +61,6 @@ public class CarEditEdit extends Controller implements Initializable {
             mainController.sendToServer(car.getString());
             return true;
         }catch (Exception e){
-            System.out.println("Invalid Input(s)!");
             return false;
         }
     }
@@ -90,8 +87,8 @@ public class CarEditEdit extends Controller implements Initializable {
 
     private boolean isInteger(String text){
         try{
-            Integer.parseInt(text);
-            return true;
+            int i = Integer.parseInt(text);
+            return i>=0;
         }catch (Exception e){
             return false;
         }
@@ -119,7 +116,6 @@ public class CarEditEdit extends Controller implements Initializable {
     }
     private File file;
     public void onImageClick(MouseEvent mouseEvent) {
-        System.out.println("On Image Click");
         File file = fileChooser.showOpenDialog(carEditEdit.getScene().getWindow());
         handleImageChange(file);
     }
@@ -127,7 +123,6 @@ public class CarEditEdit extends Controller implements Initializable {
     protected void handleImageChange(File file){
         this.file = file;
         try{
-            System.out.println(file.getAbsolutePath());
             car_image.setImage(new Image("file:///"+file.getAbsolutePath()));
             mainController.sendToServer(file);
         }catch (Exception e){

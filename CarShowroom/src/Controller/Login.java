@@ -26,7 +26,6 @@ public class Login extends Controller implements Initializable {
 
 
     public void onLogin(ActionEvent actionEvent) {
-        System.out.println("Meo");
         if(userName.getText().equals("")){
             userName.setStyle("-fx-prompt-text-fill: darkred");
             return;
